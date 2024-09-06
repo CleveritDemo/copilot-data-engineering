@@ -27,7 +27,7 @@ During this live hands-on session, participants will experience how GitHub Copil
 
 ### Step 1: Create RDD Operations File and Set PySpark environment
 
-Create a file called `RDD-Operations.ipynb` in the root folder of your project.
+Create a file called `RDD-Operations.ipynb` in a notebooks folder at the root of your project.
 
 ```python
 # Set PySpark environment
@@ -122,7 +122,7 @@ sortedData.collect()
 
 ### Step 1: Create DataFrame Operations File and Set PySpark environment
 
-Create a file called `DataFrame-Operations.ipynb` in the root folder of your project.
+Create a file called `DataFrame-Operations.ipynb` in a notebooks folder at root of your project.
 
 ```python
 # Set PySpark environment
@@ -283,7 +283,7 @@ df.withColumn('price_after_tax', df['price'] * 1.1).show()
 
 ### Step 1: Create Spark SQL File and Set PySpark environment
 
-Create a file called `Spark-SQL.ipynb` in the root folder of your project.
+Create a file called `Spark-SQL.ipynb` in a notebooks folder at root of your project.
 
 ```python
 # Set PySpark environment
