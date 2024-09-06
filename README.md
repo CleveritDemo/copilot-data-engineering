@@ -395,3 +395,7 @@ WHERE s.salary > (SELECT AVG(salary) FROM salaries)
 result = spark.sql(query)
 result.show()
 ```
+
+#### Resources
+
+1. https://www.oreilly.com/library/view/prompt-engineering-for/9781098153427/
