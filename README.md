@@ -78,6 +78,10 @@ spark = SparkSession.builder.appName('SparkRDD').getOrCreate()
 
 ### Step 3: Creating RDD from a list
 
+Create a title `Creating RDDs` and then a subtitle `Creating RDD from a list`
+
+![alt text](./assets/step-3-title.png)
+
 ```python
 
 # Create a RDD from a number list from 1 to 10
