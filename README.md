@@ -29,13 +29,24 @@ During this live hands-on session, participants will experience how GitHub Copil
 
 Create a file called `RDD-Operations.ipynb` in a notebooks folder at the root of your project.
 
+Select Kernel with the anaconda environment previously created
+
+![alt text](./assets/image.png)
+
+![alt text](./assets/image2.png)
+
 ```python
 # Set PySpark environment
 # Use the conda environment
+---------
+# Set environment variables for PySpark
+# The variables should configure Spark home, Jupyter as the driver, and Python as the interpreter.
+# Additionally, ensure that Jupyter notebook is used as the driver environment.
+
 import os
-os.environ['SPARK_HOME'] = ".../PYSPARK/Spark"
+os.environ['SPARK_HOME'] = "<Set the anaconda env with the spark setup>"
 os.environ['PYSPARK_DRIVER_PYTHON'] = 'jupyter'
-os.environ['PYSPARK_DRIVER_PYTHON_OPTS'] = 'lab'
+os.environ['PYSPARK_DRIVER_PYTHON_OPTS'] = 'notebook'
 os.environ['PYSPARK_PYTHON'] = 'python'
 ```
 
@@ -44,37 +55,35 @@ os.environ['PYSPARK_PYTHON'] = 'python'
 Tell to copilot to import and initialize Spark Session and then to create a Spark Session using comment driven development
 
 ```python
-# Import PySpark and initialize SparkSession
+# Import Spark Session from pyspark.sql
+
 from pyspark.sql import SparkSession
 
 # Create a SparkSession
-spark = SparkSession.builder.appName('SparkSQL').getOrCreate()
+spark = SparkSession.builder.appName('SparkRDD').getOrCreate()
 ```
 
 ### Step 3: Creating RDD from a list
 
 ```python
-# Create an RDD from a list
-rdd = spark.sparkContext.parallelize([1, 2, 3, 4, 5])
 
-# Create a collect action to distribute the data
-distData = spark.sparkContext.parallelize(data)
+# Create a RDD from a number list from 1 to 10
+data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+rdd = spark.sparkContext.parallelize(data)
 
-# Perform a collect action to see the data
-distData.collect()
+# Perform a collect action to view the data
+rdd.collect()
 ```
 
 ### Step 4: Creating RDD from a list of tuples
 
 ```python
 # Create an RDD from a list of tuples with name and age between 20 and 49
-data = [('Alice', 34), ('Bob', 45), ('Charlie', 23), ('David', 49), ('Alice', 28)]
-
-# distribute the data
-distData = spark.sparkContext.parallelize(data)
+data = [('John', 25), ('Lisa', 28), ('Saul', 49), ('Maria', 35), ('Lee', 40)]
+rdd = spark.sparkContext.parallelize(data)
 
 # Perform a collect action to see the data
-distData.collect()
+rdd.collect()
 ```
 
 ### Step 5: RDD Map Transformation
