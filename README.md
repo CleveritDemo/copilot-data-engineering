@@ -27,7 +27,19 @@ During this live hands-on session, participants will experience how GitHub Copil
 
 ### Step 1: Create RDD Operations File and Set PySpark environment
 
-Create a file called `RDD-Operations.ipynb` in a notebooks folder at the root of your project.
+Use the `/newNotebook` to create an empty jupyter notebook.
+
+👤 Prompt:
+
+```
+@workspace /newNotebook Create a jupyter notebook with no content
+```
+
+![alt text](/assets/newNotebook.png)
+
+![alt text](/assets/newNotebook2.png)
+
+Rename the file to `RDD-Operations.ipynb` and move it to `notebooks` folder
 
 Select Kernel with the anaconda environment previously created
 
@@ -35,10 +47,11 @@ Select Kernel with the anaconda environment previously created
 
 ![alt text](./assets/image2.png)
 
+### Set title to `PySpark Environment`
+
+![alt text](./assets/pySparkTitle.png)
+
 ```python
-# Set PySpark environment
-# Use the conda environment
----------
 # Set environment variables for PySpark
 # The variables should configure Spark home, Jupyter as the driver, and Python as the interpreter.
 # Additionally, ensure that Jupyter notebook is used as the driver environment.
