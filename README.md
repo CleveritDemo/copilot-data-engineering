@@ -343,22 +343,69 @@ df.show()
 
 ### Step 4: Read JSON File into DataFrame
 
+Create a title `Read JSON File into DataFrame` and subtitle `Single line JSON`
+
 #### Single line JSON
 
-```python
-# Read single line JSON
-# Each row is a JSON record, records are separated by new line
-json_file = '../data/products_singleline.json'
-df = spark.read.json(json_file)
+Tell to copilot how to read a single line JSON file into Dataframe
 
-# Show the DataFrame schema
+👤 Prompt:
+
+```
+@workspace how to read a single line JSON into Dataframe and print the dataframe schema and data. The file to read is #file:products_singleline.json
+```
+
+🤖 Copilot Chat Answer:
+
+```python
+from pyspark.sql import SparkSession
+
+# Initialize SparkSession
+spark = SparkSession.builder.appName('ProductsDataFrame').getOrCreate()
+
+# Read the single-line JSON file into a DataFrame
+df = spark.read.json('data/products_singleline.json')
+
+# Print the DataFrame schema
 df.printSchema()
 
-# Show the first 20 rows
+# Show the data
 df.show()
 ```
 
+> ℹ️ Set the correct path to the file
+
 #### Multi-lines JSON
+
+Create a subtitle `Multi-lines JSON`
+
+Tell to copilot how to read multi line JSON file into dataframe.
+
+👤 Prompt:
+
+```
+@workspace how to read a multiline json file into dataframe and print the dataframe schema and data. The file to read #file:products_multiline.json
+```
+
+🤖 Copilot Chat Answer:
+
+```python
+from pyspark.sql import SparkSession
+
+# Initialize SparkSession
+spark = SparkSession.builder.appName('ProductsDataFrame').getOrCreate()
+
+# Read the multi-line JSON file into a DataFrame
+df = spark.read.json('data/products_multiline.json', multiLine=True)
+
+# Print the DataFrame schema
+df.printSchema()
+
+# Show the data
+df.show()
+```
+
+> ℹ️ Set the correct path to the file
 
 ```python
 # Read multi-line JSON
