@@ -118,9 +118,11 @@ mappedData.collect()
 
 ### Step 6: RDD Filter Transformation
 
+Create a subtitle `Filter Transformation`
+
 ```python
 # Filter transformation: Filter records with age greater than 30
-filteredData = mappedData.filter(lambda x: x[1] > 30)
+filteredData = rdd.filter(lambda x: x[1] > 30)
 
 # Perform a collect action to see the data
 filteredData.collect()
