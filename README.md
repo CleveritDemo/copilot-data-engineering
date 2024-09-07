@@ -130,9 +130,53 @@ filteredData.collect()
 
 ### Step 7: RDD ReduceByKey Transformation
 
+Create a subtitle `ReduceByKey Transformation`
+
+Ask to GitHub Copilot Chat to give you an example of RDD ReduceByKey transformation
+
+👤Prompt:
+
+```
+Please give me an example of RDD reduce by key transforamation, use spark session and take as reference the file #file:RDD-Operations.ipynb
+```
+
+🤖 Copilot Answer:
+
 ```python
+# Set environment variables for PySpark
+import os
+
+os.environ['SPARK_HOME'] = 'C:/Users/saulr/Documents/CURSOS/PYSPARK/.pyspark-env/Lib/site-packages/pyspark'
+os.environ['PYSPARK_DRIVER_PYTHON'] = 'jupyter'
+os.environ['PYSPARK_DRIVER_PYTHON_OPTS'] = 'notebook'
+os.environ['PYSPARK_PYTHON'] = 'python'
+
+# Import Spark Session from pyspark.sql
+from pyspark.sql import SparkSession
+
+# Create a SparkSession
+spark = SparkSession.builder.appName('SparkRDD').getOrCreate()
+
+# Create an RDD from a list of tuples with name and age
+data = [('John', 25), ('Lisa', 28), ('Saul', 49), ('Maria', 35), ('Lee', 40), ('John', 30), ('Lisa', 25)]
+rdd = spark.sparkContext.parallelize(data)
+
 # ReduceByKey: Calculate the total age for each name
-reducedData = filteredData.reduceByKey(lambda x, y: x + y)
+reducedData = rdd.reduceByKey(lambda x, y: x + y)
+
+# Perform a collect action to see the data
+result = reducedData.collect()
+print(result)
+```
+
+> ⚠️ We are going to take only the code block we need.
+
+```python
+data = [('John', 25), ('Lisa', 28), ('Saul', 49), ('Maria', 35), ('Lee', 40), ('John', 30), ('Lisa', 25)]
+rdd = spark.sparkContext.parallelize(data)
+
+# ReduceByKey: Calculate the total age for each name
+reducedData = rdd.reduceByKey(lambda x, y: x + y)
 
 # Perform a collect action to see the data
 reducedData.collect()
