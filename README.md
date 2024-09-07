@@ -235,16 +235,42 @@ spark = SparkSession.builder.appName('SparkSQL').getOrCreate()
 
 #### Read CSV with header
 
-```python
-# Read CSV file into DataFrame
-# Use ../data/products.csv file with header
-csv_file = '../data/products.csv'
-df = spark.read.csv(csv_file, header=True, inferSchema=True)
+Tell to copilot how to read a csv file into a DataFrame
 
-# Show the DataFrame schema
+👤Prompt:
+
+```
+@workspace I want to read a csv file into a Dataframe, then print the dataframe schema and show the data. The file to read is #file:products.csv
+```
+
+🤖 Copilot Chat Answer:
+
+```python
+from pyspark.sql import SparkSession
+
+# Initialize SparkSession
+spark = SparkSession.builder.appName('ProductsDataFrame').getOrCreate()
+
+# Read the CSV file into a DataFrame
+df = spark.read.csv('data/products.csv', header=True, inferSchema=True)
+
+# Print the DataFrame schema
 df.printSchema()
 
-# Show the first 20 rows
+# Show the data
+df.show()
+```
+
+> ℹ️ We use only the code we need and set the correct path to the file.
+
+```python
+# Read the CSV file into a DataFrame
+df = spark.read.csv('../data/products.csv', header=True, inferSchema=True)
+
+# Print the DataFrame schema
+df.printSchema()
+
+# Show the data
 df.show()
 ```
 
