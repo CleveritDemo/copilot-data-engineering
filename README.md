@@ -198,13 +198,22 @@ sortedData.collect()
 
 ### Step 1: Create DataFrame Operations File and Set PySpark environment
 
-Create a file called `DataFrame-Operations.ipynb` in a notebooks folder at root of your project.
+Tell to copilot to create a new notebook
+
+👤 Prompt:
+
+```
+@workspace /newNotebook Generate a jupyter notebook with 1 cell with the title "PySpark Environment"
+```
+
+Rename the created file to `DataFrame-Operations.ipynb` and save it to notebooks folder.
+
+Set the spark setup
 
 ```python
-# Set PySpark environment
-# Use the conda environment
+
 import os
-os.environ['SPARK_HOME'] = ".../PYSPARK/Spark"
+os.environ['SPARK_HOME'] = "<Set the anaconda env with the spark setup>"
 os.environ['PYSPARK_DRIVER_PYTHON'] = 'jupyter'
 os.environ['PYSPARK_DRIVER_PYTHON_OPTS'] = 'lab'
 os.environ['PYSPARK_PYTHON'] = 'python'
