@@ -547,19 +547,26 @@ df.withColumn('price_after_tax', df['price'] * 1.1).show()
 
 ### Step 1: Create Spark SQL File and Set PySpark environment
 
-Create a file called `Spark-SQL.ipynb` in a notebooks folder at root of your project.
+Tell to copilot to create a new notebook
+
+👤 Prompt:
+
+```
+@workspace /newNotebook Generate a jupyter notebook with 1 cell with the title "PySpark Environment"
+```
+
+Rename the created file to `Spark-SQL.ipynb` and save it to notebooks folder.
+
+Set the spark setup
 
 ```python
-# Set PySpark environment
-# Use the conda environment
+
 import os
-os.environ['SPARK_HOME'] = ".../PYSPARK/Spark"
+os.environ['SPARK_HOME'] = "<Set the anaconda env with the spark setup>"
 os.environ['PYSPARK_DRIVER_PYTHON'] = 'jupyter'
 os.environ['PYSPARK_DRIVER_PYTHON_OPTS'] = 'lab'
 os.environ['PYSPARK_PYTHON'] = 'python'
 ```
-
-### Step 2: Initialize Spark Session
 
 Tell to copilot to import and initialize Spark Session and then to create a Spark Session using comment driven development
 
@@ -571,49 +578,95 @@ from pyspark.sql import SparkSession
 spark = SparkSession.builder.appName('SparkSQL').getOrCreate()
 ```
 
-### Step 3: Load Data into a DataFrame
+### Step 2: Load Data into a DataFrame
 
-```python
-# Load the synthetic data into a DataFrame
-data_file = '../data/persons.csv'
-persons_df = spark.read.csv(data_file, header=True, inferSchema=True)
+Create a title `Spark SQL` and subtitle `Load Data into a DataFrame`
 
-# Show the schema of the DataFrame
-persons_df.printSchema()
+Tell to copilot how to load a synthetic data into a dataframe
 
-# Show the first 5 rows of the DataFrame
-persons_df.show(5)
+👤Prompt:
+
+```
+@workspace How to load a synthetic data in file into a dataframe, print the schem and show the first 5 rows. The file to load is #file:persons.csv
 ```
 
-### Step 4: Register the DataFrame as a Temporary Table
+🤖 Copilot chat answer:
+
+```python
+from pyspark.sql import SparkSession
+
+# Initialize SparkSession
+spark = SparkSession.builder.appName('PersonsDataFrame').getOrCreate()
+
+# Read the CSV file into a DataFrame
+df = spark.read.csv('data/persons.csv', header=True, inferSchema=True)
+
+# Print the DataFrame schema
+df.printSchema()
+
+# Show the first 5 rows
+df.show(5)
+
+```
+
+> ℹ️ Set the correct path to file.
+
+🤖 Copilot chat answer:
+
+```python
+from pyspark.sql import SparkSession
+
+# Initialize SparkSession
+spark = SparkSession.builder.appName('PersonsDataFrame').getOrCreate()
+
+# Read the CSV file into a DataFrame
+df = spark.read.csv('../data/persons.csv', header=True, inferSchema=True)
+
+# Print the DataFrame schema
+df.printSchema()
+
+# Show the first 5 rows
+df.show(5)
+
+```
+
+> ℹ️ Set the correct path to file.
+
+### Step 3: Register the DataFrame as a Temporary Table
+
+Create a subtitle `Register the DataFrame as a Temporary Table`
 
 ```python
 # Register the DataFrame as a Temporary Table
-persons_df.createOrReplaceTempView('persons')
+df.createOrReplaceTempView('persons')
 ```
 
-### Step 5: Perform SQL-like **Queries**
+### Step 4: Perform SQL-like **Queries**
+
+Create a subtitle `Perform SQL-like Queries`
 
 ```python
 # Select all rows where age is greater than 25
 query = 'SELECT * FROM persons WHERE age > 25'
-persons_df_greater_than_25 = spark.sql(query)
-persons_df_greater_than_25.show()
+result = spark.sql(query)
+result.show()
 
 # Compute the average salary of persons
 query = 'SELECT AVG(salary) AS avg_salary FROM persons'
-avg_salary = spark.sql(query)
-avg_salary.show()
+result = spark.sql(query)
+result.show()
 ```
 
-### Step 6: Managing temporary views
+### Step 5: Managing temporary views
+
+Create a subtitle `Managing temporary views`
 
 ```python
-# Check if a temporary view exists
+# Check if a temporary view persons exists and print a message if exists
 if spark.catalog._jcatalog.tableExists('persons'):
-    print('The temporary view persons exists')
+    print('Temporary view persons exists')
 
-# Drop the temporary view
+# Drop the temporary view persons
 spark.catalog.dropTempView('persons')
 
 # Check if a temporary view exists
@@ -621,30 +674,30 @@ if spark.catalog._jcatalog.tableExists('persons'):
     print('The temporary view persons exists')
 ```
 
-### Step 7: Sub Queries
+### Step 6: Sub Queries
+
+Create a subtitle `Sub Queries`
 
 ```python
 # Create two DataFrames
 # The first DataFrame contains employee data with columns: id, name
 # The second DataFrame contains salary data with columns: id, salary, department
-data1 = [(1, 'John'), (2, 'Jane'), (3, 'Alice')]
-data2 = [(1, 1000, 'HR'), (2, 1500, 'Engineering'), (3, 1200, 'Marketing')]
-columns1 = ['id', 'name']
-columns2 = ['id', 'salary', 'department']
-df1 = spark.createDataFrame(data1, columns1)
-df2 = spark.createDataFrame(data2, columns2)
+emp_data = [(1, 'John'), (2, 'Jane'), (3, 'Smith')]
+salary_data = [(1, 50000, 'HR'), (2, 60000, 'IT'), (3, 70000, 'Finance')]
+emp_df = spark.createDataFrame(emp_data, ['id', 'name'])
+salary_df = spark.createDataFrame(salary_data, ['id', 'salary', 'department'])
 
-# Show the first DataFrame
-df1.show()
 
-# Show the second DataFrame
-df2.show()
+# Show the DataFrames
+emp_df.show()
+salary_df.show()
+
 ```
 
 ```python
 # Register as temporary views
-df1.createOrReplaceTempView('employees')
-df2.createOrReplaceTempView('salaries')
+emp_df.createOrReplaceTempView('employees')
+salary_df.createOrReplaceTempView('salaries')
 ```
 
 ```python
