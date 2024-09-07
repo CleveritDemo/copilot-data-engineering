@@ -676,28 +676,28 @@ if spark.catalog._jcatalog.tableExists('persons'):
 
 ### Step 6: Sub Queries
 
+Create a subtitle `Sub Queries`
+
 ```python
 # Create two DataFrames
 # The first DataFrame contains employee data with columns: id, name
 # The second DataFrame contains salary data with columns: id, salary, department
-data1 = [(1, 'John'), (2, 'Jane'), (3, 'Alice')]
-data2 = [(1, 1000, 'HR'), (2, 1500, 'Engineering'), (3, 1200, 'Marketing')]
-columns1 = ['id', 'name']
-columns2 = ['id', 'salary', 'department']
-df1 = spark.createDataFrame(data1, columns1)
-df2 = spark.createDataFrame(data2, columns2)
+emp_data = [(1, 'John'), (2, 'Jane'), (3, 'Smith')]
+salary_data = [(1, 50000, 'HR'), (2, 60000, 'IT'), (3, 70000, 'Finance')]
+emp_df = spark.createDataFrame(emp_data, ['id', 'name'])
+salary_df = spark.createDataFrame(salary_data, ['id', 'salary', 'department'])
 
-# Show the first DataFrame
-df1.show()
 
-# Show the second DataFrame
-df2.show()
+# Show the DataFrames
+emp_df.show()
+salary_df.show()
+
 ```
 
 ```python
 # Register as temporary views
-df1.createOrReplaceTempView('employees')
-df2.createOrReplaceTempView('salaries')
+emp_df.createOrReplaceTempView('employees')
+salary_df.createOrReplaceTempView('salaries')
 ```
 
 ```python
