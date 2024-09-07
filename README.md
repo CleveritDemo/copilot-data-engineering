@@ -184,6 +184,8 @@ reducedData.collect()
 
 ### Step 8: RDD Sorty By Transformation
 
+Create a subtitle `SortBy Transformation`
+
 ```python
 # SortyBy Transformation: Sort the data by age in descending order
 sortedData = reducedData.sortBy(lambda x: x[1], ascending=False)
