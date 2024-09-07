@@ -460,22 +460,41 @@ plt.show()
 
 ### Step 6: DataFrame Operations
 
+Create a title `DataFrame Operations` and subtitle `Loading the syntethic data into DataFrame`
+
 #### Loading the syntethic data into DataFrame
 
-```python
-# Load the synthetic data into a DataFrame
-# Read with spark csv method
-synthetic_file = '../data/stocks.txt'
-df = spark.read.csv(synthetic_file, header=True, inferSchema=True)
+Tell to copilot to read syntethic file `stocks.txt` into dataframe
 
-# Show the DataFrame schema
+👤 Prompt:
+
+```
+@workspace Read this syntethic file into dataframe, print the schema and data. The file is #file:stocks.txt
+```
+
+🤖 Copilot Chat Answer:
+
+```python
+from pyspark.sql import SparkSession
+
+# Initialize SparkSession
+spark = SparkSession.builder.appName('StocksDataFrame').getOrCreate()
+
+# Read the CSV file into a DataFrame
+df = spark.read.csv('data/stocks.txt', header=True, inferSchema=True)
+
+# Print the DataFrame schema
 df.printSchema()
 
-# Show the first 20 rows
+# Show the data
 df.show()
 ```
 
+> ℹ️ Set the correct path to the file
+
 #### Select: Choose specific columns
+
+Create subtitle `Select: Choose specific columns`
 
 ```python
 # Select specific columns from the DataFrame: name, category, and price
@@ -484,12 +503,16 @@ df.select('name', 'category', 'price').show()
 
 #### Filter: Apply conditions to filter rows
 
+Create subtitle `Filter: Apply conditions to filter rows`
+
 ```python
 # Filter rows based on a condition using filter method
 df.filter(df['price'] > 100).show()
 ```
 
 #### GroupBy: Group data based on specific columns
+
+Create subtitle `GroupBy: Group data based on specific columns`
 
 ```python
 # Group by category and count the number of products in each category
@@ -501,6 +524,8 @@ df.groupBy('category').agg({'price': 'avg'}).show()
 
 #### Join: Combine multiple DataFrames based on specified columns
 
+Create subtitle `Join: Combine multiple DataFrames based on specified columns`
+
 ```python
 # Join with another DataFrame. Create this new DF by filtering the original DF
 df2 = df.filter(df['price'] > 100)
@@ -510,6 +535,8 @@ df.join(df2, on='category', how='inner').show()
 ```
 
 #### WithColumn: Add new calculated columns
+
+Create subtitle `WithColumn: Add new calculated columns`
 
 ```python
 # Add a new calculated column
