@@ -278,28 +278,67 @@ df.show()
 
 #### Read CSV with an explicit schema definition
 
-```python
-# Import the necessary types
-from pyspark.sql.types import StructType, StructField, IntegerType, StringType, FloatType
+Create a subtitle `Read CSV with an explicit schema definition`
 
-# Define a new schema
+Tell to copilot to read the same file but in this case with an explicit schema definition
+
+👤 Prompt:
+
+```
+@workspace now read the same file but in this case with an explicit schema definition
+```
+
+🤖 Copilot Chat Answer:
+
+```python
+from pyspark.sql import SparkSession
+from pyspark.sql.types import StructType, StructField, IntegerType, StringType, DoubleType
+
+# Initialize SparkSession
+spark = SparkSession.builder.appName('ProductsDataFrame').getOrCreate()
+
+# Define the schema explicitly
 schema = StructType([
-    StructField('product_id', IntegerType(), False),
-    StructField('product_name', StringType(), False),
-    StructField('product_category_id', IntegerType(), False),
-    StructField('product_description', StringType(), True),
-    StructField('product_price', FloatType(), False)
+    StructField("id", IntegerType(), True),
+    StructField("name", StringType(), True),
+    StructField("category", StringType(), True),
+    StructField("quantity", IntegerType(), True),
+    StructField("price", DoubleType(), True)
 ])
 
-# Load the data with the new schema
-df = spark.read.csv(csv_file, header=True, schema=schema)
+# Read the CSV file into a DataFrame with the explicit schema
+df = spark.read.csv('../data/products.csv', header=True, schema=schema)
 
-# Show the DataFrame schema
+# Print the DataFrame schema
 df.printSchema()
 
-# Show the first 20 rows
+# Show the data
 df.show()
 
+```
+
+> ℹ️ We use only the code we need and set the correct path to the file.
+
+```python
+from pyspark.sql.types import StructType, StructField, IntegerType, StringType, DoubleType
+
+# Define the schema explicitly
+schema = StructType([
+    StructField("id", IntegerType(), True),
+    StructField("name", StringType(), True),
+    StructField("category", StringType(), True),
+    StructField("quantity", IntegerType(), True),
+    StructField("price", DoubleType(), True)
+])
+
+# Read the CSV file into a DataFrame with the explicit schema
+df = spark.read.csv('../data/products.csv', header=True, schema=schema)
+
+# Print the DataFrame schema
+df.printSchema()
+
+# Show the data
+df.show()
 ```
 
 ### Step 4: Read JSON File into DataFrame
