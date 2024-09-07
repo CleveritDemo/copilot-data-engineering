@@ -105,9 +105,11 @@ rdd.collect()
 
 ### Step 5: RDD Map Transformation
 
+Create a title `RDDs Transformations` and then a subtitle `Map Transformation`
+
 ```python
 # Map transformation: Convert name to uppercase
-mappedData = distData.map(lambda x: (x[0].upper(), x[1]))
+mappedData = rdd.map(lambda x: (x[0].upper(), x[1]))
 
 # Perform a collect action to see the data
 mappedData.collect()
