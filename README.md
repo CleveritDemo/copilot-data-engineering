@@ -580,17 +580,36 @@ spark = SparkSession.builder.appName('SparkSQL').getOrCreate()
 
 ### Step 2: Load Data into a DataFrame
 
-```python
-# Load the synthetic data into a DataFrame
-data_file = '../data/persons.csv'
-persons_df = spark.read.csv(data_file, header=True, inferSchema=True)
+Create a title `Spark SQL` and subtitle `Load Data into a DataFrame`
 
-# Show the schema of the DataFrame
-persons_df.printSchema()
+Tell to copilot how to load a synthetic data into a dataframe
 
-# Show the first 5 rows of the DataFrame
-persons_df.show(5)
+👤Prompt:
+
 ```
+@workspace How to load a synthetic data in file into a dataframe, print the schem and show the first 5 rows. The file to load is #file:persons.csv
+```
+
+🤖 Copilot chat answer:
+
+```python
+from pyspark.sql import SparkSession
+
+# Initialize SparkSession
+spark = SparkSession.builder.appName('PersonsDataFrame').getOrCreate()
+
+# Read the CSV file into a DataFrame
+df = spark.read.csv('data/persons.csv', header=True, inferSchema=True)
+
+# Print the DataFrame schema
+df.printSchema()
+
+# Show the first 5 rows
+df.show(5)
+
+```
+
+> ℹ️ Set the correct path to file.
 
 ### Step 3: Register the DataFrame as a Temporary Table
 
