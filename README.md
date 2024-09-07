@@ -643,6 +643,8 @@ persons_df.createOrReplaceTempView('persons')
 
 ### Step 4: Perform SQL-like **Queries**
 
+Create a subtitle `Perform SQL-like Queries`
+
 ```python
 # Select all rows where age is greater than 25
 query = 'SELECT * FROM persons WHERE age > 25'
