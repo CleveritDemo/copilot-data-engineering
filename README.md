@@ -620,7 +620,7 @@ from pyspark.sql import SparkSession
 spark = SparkSession.builder.appName('PersonsDataFrame').getOrCreate()
 
 # Read the CSV file into a DataFrame
-df = spark.read.csv('data/persons.csv', header=True, inferSchema=True)
+df = spark.read.csv('../data/persons.csv', header=True, inferSchema=True)
 
 # Print the DataFrame schema
 df.printSchema()
@@ -638,7 +638,7 @@ Create a subtitle `Register the DataFrame as a Temporary Table`
 
 ```python
 # Register the DataFrame as a Temporary Table
-persons_df.createOrReplaceTempView('persons')
+df.createOrReplaceTempView('persons')
 ```
 
 ### Step 4: Perform SQL-like **Queries**
@@ -648,23 +648,25 @@ Create a subtitle `Perform SQL-like Queries`
 ```python
 # Select all rows where age is greater than 25
 query = 'SELECT * FROM persons WHERE age > 25'
-persons_df_greater_than_25 = spark.sql(query)
-persons_df_greater_than_25.show()
+result = spark.sql(query)
+result.show()
 
 # Compute the average salary of persons
 query = 'SELECT AVG(salary) AS avg_salary FROM persons'
-avg_salary = spark.sql(query)
-avg_salary.show()
+result = spark.sql(query)
+result.show()
 ```
 
 ### Step 5: Managing temporary views
 
-```python
-# Check if a temporary view exists
-if spark.catalog._jcatalog.tableExists('persons'):
-    print('The temporary view persons exists')
+Create a subtitle `Managing temporary views`
 
-# Drop the temporary view
+```python
+# Check if a temporary view persons exists and print a message if exists
+if spark.catalog._jcatalog.tableExists('persons'):
+    print('Temporary view persons exists')
+
+# Drop the temporary view persons
 spark.catalog.dropTempView('persons')
 
 # Check if a temporary view exists
