@@ -547,19 +547,26 @@ df.withColumn('price_after_tax', df['price'] * 1.1).show()
 
 ### Step 1: Create Spark SQL File and Set PySpark environment
 
-Create a file called `Spark-SQL.ipynb` in a notebooks folder at root of your project.
+Tell to copilot to create a new notebook
+
+👤 Prompt:
+
+```
+@workspace /newNotebook Generate a jupyter notebook with 1 cell with the title "PySpark Environment"
+```
+
+Rename the created file to `Spark-SQL.ipynb` and save it to notebooks folder.
+
+Set the spark setup
 
 ```python
-# Set PySpark environment
-# Use the conda environment
+
 import os
-os.environ['SPARK_HOME'] = ".../PYSPARK/Spark"
+os.environ['SPARK_HOME'] = "<Set the anaconda env with the spark setup>"
 os.environ['PYSPARK_DRIVER_PYTHON'] = 'jupyter'
 os.environ['PYSPARK_DRIVER_PYTHON_OPTS'] = 'lab'
 os.environ['PYSPARK_PYTHON'] = 'python'
 ```
-
-### Step 2: Initialize Spark Session
 
 Tell to copilot to import and initialize Spark Session and then to create a Spark Session using comment driven development
 
@@ -571,7 +578,7 @@ from pyspark.sql import SparkSession
 spark = SparkSession.builder.appName('SparkSQL').getOrCreate()
 ```
 
-### Step 3: Load Data into a DataFrame
+### Step 2: Load Data into a DataFrame
 
 ```python
 # Load the synthetic data into a DataFrame
@@ -585,14 +592,14 @@ persons_df.printSchema()
 persons_df.show(5)
 ```
 
-### Step 4: Register the DataFrame as a Temporary Table
+### Step 3: Register the DataFrame as a Temporary Table
 
 ```python
 # Register the DataFrame as a Temporary Table
 persons_df.createOrReplaceTempView('persons')
 ```
 
-### Step 5: Perform SQL-like **Queries**
+### Step 4: Perform SQL-like **Queries**
 
 ```python
 # Select all rows where age is greater than 25
@@ -606,7 +613,7 @@ avg_salary = spark.sql(query)
 avg_salary.show()
 ```
 
-### Step 6: Managing temporary views
+### Step 5: Managing temporary views
 
 ```python
 # Check if a temporary view exists
@@ -621,7 +628,7 @@ if spark.catalog._jcatalog.tableExists('persons'):
     print('The temporary view persons exists')
 ```
 
-### Step 7: Sub Queries
+### Step 6: Sub Queries
 
 ```python
 # Create two DataFrames
