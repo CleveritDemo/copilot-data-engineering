@@ -420,7 +420,45 @@ df.printSchema()
 df.show()
 ```
 
-### Step 5: DataFrame Operations
+### Step 5: Creating a Bar Chart
+
+Create a subtitle `Creating a barchart`
+
+Tell to copilot how to create a barchart using pandas dataframe
+
+👤Prompt:
+
+```
+@workspace How to convert a dataframe to pandas dataframe and then create a bar chart with the product prices use matplotlib
+```
+
+🤖 Copilot Chat Answer:
+
+```python
+import matplotlib.pyplot as plt
+
+# Assuming you have already read the JSON file into a PySpark DataFrame
+df = spark.read.json('../data/products_singleline.json')
+
+# Convert the PySpark DataFrame to a Pandas DataFrame
+pandas_df = df.toPandas()
+
+# Create a bar chart with product prices
+plt.figure(figsize=(10, 6))
+plt.bar(pandas_df['name'], pandas_df['price'], color='skyblue')
+plt.xlabel('Product Name')
+plt.ylabel('Price')
+plt.title('Product Prices')
+plt.xticks(rotation=90)
+plt.tight_layout()
+
+# Show the plot
+plt.show()
+```
+
+![alt text](./assets/barchart.png)
+
+### Step 6: DataFrame Operations
 
 #### Loading the syntethic data into DataFrame
 
