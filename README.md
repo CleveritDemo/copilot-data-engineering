@@ -611,6 +611,27 @@ df.show(5)
 
 > ℹ️ Set the correct path to file.
 
+🤖 Copilot chat answer:
+
+```python
+from pyspark.sql import SparkSession
+
+# Initialize SparkSession
+spark = SparkSession.builder.appName('PersonsDataFrame').getOrCreate()
+
+# Read the CSV file into a DataFrame
+df = spark.read.csv('data/persons.csv', header=True, inferSchema=True)
+
+# Print the DataFrame schema
+df.printSchema()
+
+# Show the first 5 rows
+df.show(5)
+
+```
+
+> ℹ️ Set the correct path to file.
+
 ### Step 3: Register the DataFrame as a Temporary Table
 
 Create a subtitle `Register the DataFrame as a Temporary Table`
