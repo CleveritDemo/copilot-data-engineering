@@ -233,6 +233,8 @@ spark = SparkSession.builder.appName('SparkSQL').getOrCreate()
 
 ### Step 3: Read CSV File into DataFrame
 
+Create a title `Read CSV file into DataFrame` and subtitle `Read CSV with header`
+
 #### Read CSV with header
 
 Tell to copilot how to read a csv file into a DataFrame
