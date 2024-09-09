@@ -8,7 +8,6 @@ During this live hands-on session, participants will experience how GitHub Copil
 
 - Ingest data from multiple sources using Apache Spark.
 - Transform data using PySpark and pandas.
-- Load data into a SQL database.
 - Generate SQL queries with the assistance of GitHub Copilot.
 - Use GitHub Copilot to assist in writing code and generating documentation.
 - Share the context of previous development and collaborate using GitHub Copilot Chat.
