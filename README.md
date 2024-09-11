@@ -14,11 +14,11 @@ During this live hands-on session, participants will experience how GitHub Copil
 
 ## ℹ️Requirements
 
-- Conda (Miniconda or Anaconda).
-- VS Code version with Jupyter and GitHub Copilot Extensions enabled.
-- Apache Spark setup.
-- SQL Database (PostgreSQL, MySQL, etc.) installed.
-- SQLAlchemy and other necessary Python packages installed.
+- VS Code
+- GitHub Copilot License
+- GitHub Copilot Extension
+- Python (venv)
+- VS Code version with Jupyter enabled.
 
 ## Before starting the activity: Clone the repository
 
@@ -34,21 +34,53 @@ Use the `/newNotebook` to create an empty jupyter notebook.
 @workspace /newNotebook Create a jupyter notebook with no content
 ```
 
-![alt text](/assets/newNotebook.png)
+1.  ![alt text](/assets/newNotebook.png)
 
-![alt text](/assets/newNotebook2.png)
+2.  ![alt text](/assets/newNotebook2.png)
 
 Rename the file to `RDD-Operations.ipynb` and move it to `notebooks` folder
 
-Select Kernel with the anaconda environment previously created
+## ⚠️ Create Python Virtual Environment
 
-![alt text](./assets/image.png)
+For this first activity, we need to create a Python virtual environment. This step is essential because it allows us to isolate the project's dependencies, ensuring that any libraries or packages we install do not interfere with other projects or the global Python environment.
 
-![alt text](./assets/image2.png)
+We will only need to create this virtual environment once at the beginning of the activity. After that, we will use this environment for the rest of the tasks, which means every time we run or modify code, it will utilize the packages and settings contained within this environment. This helps keep our workspace clean and ensures consistency throughout the activity
+
+1. Click on `Select Kernel` At the top right of the window
+
+   ![alt text](./assets/image.png)
+
+2. Select `Python Environments`
+
+   ![alt text](./assets/python-environment.png)
+
+3. Select `Create Python Environments`
+
+   ![alt text](./assets/createPythonEnvironment.png)
+
+4. Select `Venv`
+
+   ![alt text](./assets/selectVenv.png)
+
+5. Select a Python Installation
+
+   ![alt text](./assets/pythoinInstallation.png)
+
+### Continuing with the activity
 
 ### Set title to `PySpark Environment`
 
 ![alt text](./assets/pySparkTitle.png)
+
+Add a code section with the following code block, then run this cell. This will install all the necessary packages for the activity
+
+ℹ️ You only need to run this cell once for the entire activity
+
+```python
+%pip install -r ../requirements.txt
+```
+
+![alt text](image.png)
 
 ```python
 # Set environment variables for PySpark
@@ -56,7 +88,7 @@ Select Kernel with the anaconda environment previously created
 # Additionally, ensure that Jupyter notebook is used as the driver environment.
 
 import os
-os.environ['SPARK_HOME'] = "<Set the anaconda env with the spark setup>"
+os.environ['SPARK_HOME'] = "<Set the path to pyspark installation (.venv)>"
 os.environ['PYSPARK_DRIVER_PYTHON'] = 'jupyter'
 os.environ['PYSPARK_DRIVER_PYTHON_OPTS'] = 'notebook'
 os.environ['PYSPARK_PYTHON'] = 'python'
@@ -145,7 +177,7 @@ Please give me an example of RDD reduce by key transforamation, use spark sessio
 # Set environment variables for PySpark
 import os
 
-os.environ['SPARK_HOME'] = 'C:/Users/saulr/Documents/CURSOS/PYSPARK/.pyspark-env/Lib/site-packages/pyspark'
+os.environ['SPARK_HOME'] = '<Set the path to pyspark installation (.venv)>'
 os.environ['PYSPARK_DRIVER_PYTHON'] = 'jupyter'
 os.environ['PYSPARK_DRIVER_PYTHON_OPTS'] = 'notebook'
 os.environ['PYSPARK_PYTHON'] = 'python'
@@ -212,7 +244,7 @@ Set the spark setup
 ```python
 
 import os
-os.environ['SPARK_HOME'] = "<Set the anaconda env with the spark setup>"
+os.environ['SPARK_HOME'] = "<Set the path to pyspark installation (.venv)>"
 os.environ['PYSPARK_DRIVER_PYTHON'] = 'jupyter'
 os.environ['PYSPARK_DRIVER_PYTHON_OPTS'] = 'lab'
 os.environ['PYSPARK_PYTHON'] = 'python'
@@ -561,7 +593,7 @@ Set the spark setup
 ```python
 
 import os
-os.environ['SPARK_HOME'] = "<Set the anaconda env with the spark setup>"
+os.environ['SPARK_HOME'] = "<Set the path to pyspark installation (.venv)>"
 os.environ['PYSPARK_DRIVER_PYTHON'] = 'jupyter'
 os.environ['PYSPARK_DRIVER_PYTHON_OPTS'] = 'lab'
 os.environ['PYSPARK_PYTHON'] = 'python'
