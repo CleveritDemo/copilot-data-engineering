@@ -279,6 +279,14 @@ Tell to copilot how to read a csv file into a DataFrame
 @workspace I want to read a csv file into a Dataframe, then print the dataframe schema and show the data. The file to read is #file:products.csv
 ```
 
+**Nota**: También puedes usar el modo agente para este paso, lo que te permitirá interactuar con GitHub Copilot Chat y pedirle que te ayude a escribir el código.
+**Note**: You can also use agent mode for this step, which will allow you to interact with GitHub Copilot Chat and ask it to help you write the code.
+
+Example prompt for agent mode:
+
+```Read the following CSV file into a DataFrame, then print the DataFrame schema and show the data. The file to read is #file:products.csv```
+
+
 🤖 Copilot Chat Answer:
 
 ```python
@@ -319,8 +327,10 @@ Tell to copilot to read the same file but in this case with an explicit schema d
 👤 Prompt:
 
 ```
-@workspace now read the same file but in this case with an explicit schema definition
+Now read the same file but in this case with an explicit schema definition
 ```
+
+
 
 🤖 Copilot Chat Answer:
 

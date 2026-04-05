@@ -279,6 +279,12 @@ Indica a Copilot cómo leer un archivo CSV en un DataFrame
 @workspace Quiero leer un archivo CSV en un DataFrame, luego imprimir el esquema del DataFrame y mostrar los datos. El archivo a leer es #file:products.csv
 ```
 
+**Nota**: También puedes usar el modo agente para este paso, lo que te permitirá interactuar con GitHub Copilot Chat y pedirle que te ayude a escribir el código.
+
+Ejemplo de prompt para modo agente:
+
+```Leer el siguiente archivo CSV en un DataFrame, luego imprimir el esquema del DataFrame y mostrar los datos. El archivo a leer es #file:products.csv```
+
 🤖 Respuesta de Copilot:
 
 ```python
@@ -319,8 +325,10 @@ Indica a Copilot que lea el mismo archivo pero en este caso con una definición 
 👤 Prompt:
 
 ```
-@workspace ahora lee el mismo archivo pero en este caso con una definición de esquema explícita
+Ahora lee el mismo archivo pero en este caso con una definición de esquema explícita
 ```
+
+
 
 🤖 Respuesta de Copilot:
 
