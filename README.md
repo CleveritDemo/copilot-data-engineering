@@ -33,6 +33,9 @@ Use the `/newNotebook` to create an empty jupyter notebook.
 ```
 @workspace /newNotebook Create a jupyter notebook with no content
 ```
+**Nota**: En las ultimas versiones de GitHub Copilot / VS code, el participante @workspace, ya no se encuentra disponible, en estos casos debiera bastar con el comando `/newNotebook` para crear un nuevo cuaderno de Jupyter.
+**Note**: In the latest versions of GitHub Copilot / VS Code, the @workspace participant is no longer available. In these cases, the `/newNotebook` command alone should be enough to create a new Jupyter notebook.
+
 
 1.  ![alt text](/assets/newNotebook.png)
 
@@ -234,7 +237,7 @@ Tell to copilot to create a new notebook
 👤 Prompt:
 
 ```
-@workspace /newNotebook Generate a jupyter notebook with 1 cell with the title "PySpark Environment"
+/newNotebook Generate a jupyter notebook with 1 cell with the title "PySpark Environment"
 ```
 
 Rename the created file to `DataFrame-Operations.ipynb` and save it to notebooks folder.
